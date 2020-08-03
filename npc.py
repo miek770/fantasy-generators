@@ -229,6 +229,23 @@ table_other_ideal = [
     ("self-knowledge", 1),
 ]
 
+table_multiple_bonds = [
+    (1, 9),
+    (2, 1),
+]
+
+table_bond = [
+    ("dedicated to fulfilling a personal life goal", 1),
+    ("protective of close family members", 1),
+    ("protective of colleagues or compatriots", 1),
+    ("loyal to a benefactor, patron or employer", 1),
+    ("captivated by a romantic interest", 1),
+    ("drawn to a special place", 1),
+    ("protective of a sentimental keepsake", 1),
+    ("protective of a valuable possession", 1),
+    ("out for revenge", 1),
+]
+
 
 def npc():
     description = []
@@ -278,6 +295,13 @@ def npc():
     ideal1, ideal2 = roll_exclusive(table_ideal, table_ideal)
 
     description.append(f"{pronoun} values {ideal1} and {ideal2} above all else.".capitalize())
+
+    n_bonds = roll(table_multiple_bonds)
+    if n_bonds == 1:
+        description.append(f"{pronoun} is {roll(table_bond)}.".capitalize())
+    else:
+        bond1, bond2 = roll_exclusive(table_bond, table_bond)
+        description.append(f"{pronoun} is {bond1} and {bond2}.".capitalize())
 
     print(" ".join(description))
 
