@@ -30,6 +30,19 @@ table_race = [
     ("dragonborn", 5),
 ]
 
+# To be replaced with an open source table with more entries
+table_animal = [
+    ("cats", 1),
+    ("dogs", 1),
+    ("mouses", 1),
+    ("rats", 1),
+    ("birds", 1),
+    ("insects", 1),
+    ("spiders", 1),
+    ("scorpions", 1),
+    ("bats", 1),
+]
+
 table_age_qualifier = [
     ("a young", 1),
     ("a", 2),
@@ -42,18 +55,73 @@ table_age = [
     ("adult", 7),
 ]
 
+table_weight = [
+    (" and slim", 3),
+    ("", 4),
+    (" and round", 2),
+    (" and fat", 1),
+]
+
+table_height = [
+    ("a tiny", 1),
+    ("a small", 3),
+    ("a", 4),
+    ("a tall", 2),
+]
+
+table_side = [
+    ("left", 1),
+    ("right", 1),
+]
+
+table_upper_lower = [
+    ("upper", 1),
+    ("lower", 1),
+]
+
+table_body_part = [
+    ("head", 1),
+    ("face", 1),
+    ("nose", 1),
+    (f"{roll(table_side)} eye", 1),
+    ("mouth", 1),
+    (f"{roll(table_side)} ear", 1),
+    ("neck", 1),
+    (f"{roll(table_side)} elbow", 1),
+    (f"{roll(table_side)} arm", 1),
+    (f"{roll(table_side)} hand", 1),
+    (f"{roll(table_side)} foot", 1),
+    (f"{roll(table_side)} leg", 1),
+    (f"{roll(table_side)} knee", 1),
+    (f"{roll(table_side)} shoulder", 1),
+    (f"{roll(table_side)} nipple", 1),
+    (f"{roll(table_upper_lower)} lip", 1),
+]
+
+table_body_piercing_location = [
+    ("nostril", 1),
+    ("eyebrow", 1),
+    ("", 1),
+    ("", 1),
+    ("", 1),
+    ("", 1),
+    ("", 1),
+    ("", 1),
+]
+
 table_appearance = [
     ("wears distinctive jewelry", 1),
-    ("wears piercings", 1),
+    (f"wears piercings on the {roll(table_body_part)}", 1),
     ("wears flamboyant or outlandish clothes", 1),
     ("wears formal, clean clothes", 1),
     ("wears ragged, dirty clothes", 1),
-    ("bears a pronounced scar", 1),
+    (f"bears a pronounced scar on the {roll(table_body_part)}", 1),
     ("has a missing teeth", 1),
     ("has missing fingers", 1),
     ("has an unusual eye color (or 2 different colors)", 1),
-    ("has visible tattoos", 1),
-    ("has a visible birthmark", 1),
+    (f"has visible tattoos on the {roll(table_body_part)}", 1),
+    (f"has a visible birthmark on the {roll(table_body_part)}", 1),
+    (f"has a bruised {roll(table_body_part)}", 1),
     ("has an unusual skin color", 1),
     ("is bald", 1),
     ("has braided beard or hair", 1),
@@ -83,34 +151,54 @@ table_low_ability = [
     ("dull and boring", 1),
 ]
 
+table_craft = [
+    ("cook", 1),
+    ("mason", 1),
+    ("carpenter", 1),
+    ("jeweler", 1),
+    ("smith", 1),
+    ("tinkerer", 1),
+    ("alchemist", 1),
+    ("scribe", 1),
+    ("hunter", 1),
+]
+
+table_proficiency = [
+    ("novice", 30),
+    ("skilled", 50),
+    ("talented", 20),
+    ("expert", 5),
+    ("master", 3),
+    ("legendary", 1),
+]
+
+table_instrument = [
+    ("flute", 1),
+    ("luthe", 1),
+    ("drum", 1),
+]
+
 table_talent = [
-    ("enjoys playing a musical instrument", 1),
+    (f"enjoys playing the {roll(table_instrument)}", 1),
     ("hates music of any genre", 1),
     ("speaks several languages fluently", 1),
     ("is unbelievably lucky", 1),
-    ("is reputably unlucky", 1),
     ("has a perfect memory", 1),
     ("has trouble remembering names", 1),
     ("is great with animals", 1),
-    ("is afraid of dogs", 1),
     ("is great with children", 1),
-    ("hates children", 1),
     ("is great at solving puzzles", 1),
-    ("doesn't enjoy games", 1),
     ("is great at one specific game", 1),
     ("is great at impersonations", 1),
     ("draws beautifully", 1),
     ("paints beautifully", 1),
     ("sings beautifully", 1),
-    ("sings like a dying rooster", 1),
     ("drinks everyone under the table", 1),
-    ("is awkward when drunk", 1),
-    ("is an expert carpenter", 1),
-    ("is an expert cook", 1),
-    ("is an expert dart thrower and rock skipper", 1),
-    ("is an expert juggler", 1),
-    ("is a skilled actor and master of disguise", 1),
-    ("is a skilled dancer", 1),
+    (f"is an {roll(table_proficiency)} {roll(table_craft)}", 1),
+    (f"is an {roll(table_proficiency)} dart thrower and rock skipper", 1),
+    (f"is an {roll(table_proficiency)} juggler", 1),
+    (f"is a {roll(table_proficiency)} actor and master of disguise", 1),
+    (f"is a {roll(table_proficiency)} dancer", 1),
     ("knows thieves' cant", 1),
 ]
 
@@ -246,6 +334,29 @@ table_bond = [
     ("out for revenge", 1),
 ]
 
+table_flaw = [
+    ("being susceptible to romance", 1),
+    ("enjoying decadent pleasures", 1),
+    ("arrogance", 1),
+    ("envy", 1),
+    ("overpowering greed", 1),
+    ("being prone to rage", 1),
+    ("a foolhardy bravery", 1),
+    ("glutony", 1),
+    ("pride", 1),
+    ("sloth", 1),
+    ("jealousy", 1),
+]
+
+table_secret = [
+    ("a forbidden love", 1),
+    ("a powerful ennemy", 1),
+    (f"a fear of {roll(table_animal)}", 1),
+    ("a shameful or scandalous history", 1),
+    ("a past crime or misdeed", 1),
+    ("the possession of forbidden lore", 1),
+]
+
 
 def npc():
     description = []
@@ -257,7 +368,7 @@ def npc():
         pronoun = "she"
         pronoun_poss = "her"
 
-    description.append(f"{pronoun} is {roll(table_age_qualifier)} {sex} {roll(table_race)} {roll(table_age)}.".capitalize())
+    description.append(f"{pronoun} is {roll(table_height)}{roll(table_weight)} {roll(table_age_qualifier)} {sex} {roll(table_race)} {roll(table_age)}.".capitalize())
     description.append(f"{pronoun} {roll(table_appearance)}.".capitalize())
 
     a = roll_exclusive(table_high_ability, table_low_ability)
@@ -305,8 +416,8 @@ def npc():
         bond1, bond2 = roll_exclusive(table_bond, table_bond)
         description.append(f"{pronoun} is {bond1} and {bond2}.".capitalize())
 
-    description.append(f"{pronoun_poss} biggest flaw is ...;".capitalize())
-    description.append(f"{pronoun_poss} deepest secret is ...")
+    description.append(f"{pronoun_poss} biggest flaw is {roll(table_flaw)};".capitalize())
+    description.append(f"{pronoun_poss} deepest secret is {roll(table_secret)}.")
 
     #description.append(f"".capitalize())
 
