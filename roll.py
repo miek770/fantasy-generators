@@ -15,7 +15,10 @@ def expand(table):
     t = []
     for r in table:
         for _ in range(r[1]):
-            t.append(r[0])
+            try:
+                t.append((r[0], r[2]))
+            except IndexError:
+                t.append((r[0], None))
     return t
 
 
@@ -31,7 +34,11 @@ def roll(table):
     :rtype: [type]
     """
     t = expand(table)
-    return t[randint(0, len(t) - 1)]
+    choice = t[randint(0, len(t) - 1)]
+    if choice[1] is None:
+        return choice[0]
+    else:
+        return choice
 
 
 def roll_exclusive(table1, table2):

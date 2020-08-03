@@ -1,4 +1,18 @@
 from roll import expand, roll, roll_exclusive
+from enum import Enum
+
+
+class Alignment(Enum):
+    Good = 0
+    Neutral = 1
+    Evil = 2
+
+
+class Lawfulness(Enum):
+    Lawful = 0
+    Neutral = 1
+    Chaotic = 2
+
 
 table_sex = [
     ("male", 1),
@@ -150,25 +164,69 @@ table_interactions = [
 ]
 
 table_alignment = [
-    # Good
-    ("likes to help others", 2),
-
-    # Neutral
-    ("doesn't particularly tend to help others", 3),
-
-    # Evil
-    ("is rather self-centered", 1),
+    ("likes to help others", 2, Alignment.Good),
+    ("doesn't particularly tend to help others", 3, Alignment.Neutral),
+    ("is rather self-centered", 1, Alignment.Evil),
 ]
 
 table_lawfulness = [
-    # Lawful
-    ("believes in law and order", 3),
+    ("believes in law and order", 3, Lawfulness.Lawful),
+    ("believes laws are sometimes wrong and civilization has a price", 2, Lawfulness.Neutral),
+    ("believes rules are for others", 1, Lawfulness.Chaotic),
+]
 
-    # Neutral
-    ("believes laws are sometimes wrong and civilization has a price", 2),
+table_good_ideal = [
+    ("beauty", 1),
+    ("charity", 1),
+    ("greater good", 1),
+    ("life", 1),
+    ("respect", 1),
+    ("self-sacrifice", 1),
+]
 
-    # Chaotic
-    ("believes rules are for others", 1),
+table_evil_ideal = [
+    ("domination", 1),
+    ("greed", 1),
+    ("might", 1),
+    ("pain", 1),
+    ("retribution", 1),
+    ("slaughter", 1),
+]
+
+table_lawful_ideal = [
+    ("community", 1),
+    ("fairness", 1),
+    ("honor", 1),
+    ("logic", 1),
+    ("responsibility", 1),
+    ("tradition", 1),
+]
+
+table_chaotic_ideal = [
+    ("change", 1),
+    ("creativity", 1),
+    ("freedom", 1),
+    ("independence", 1),
+    ("no limits", 1),
+    ("whimsy", 1),
+]
+
+table_neutral_ideal = [
+    ("balance", 1),
+    ("knowledge", 1),
+    ("live and let live", 1),
+    ("moderation", 1),
+    ("neutrality", 1),
+    ("people", 1),
+]
+
+table_other_ideal = [
+    ("aspiration", 1),
+    ("discovery", 1),
+    ("glory", 1),
+    ("nation", 1),
+    ("redemption", 1),
+    ("self-knowledge", 1),
 ]
 
 
@@ -188,7 +246,38 @@ def npc():
     description.append(f"{pronoun} {a[0]} but {a[1]}.".capitalize())
     description.append(f"{pronoun} {roll(table_talent)} and {roll(table_mannerism)}.".capitalize())
     description.append(f"{pronoun} is {roll(table_frequency)} {roll(table_interactions)}.".capitalize())
-    description.append(f"{pronoun} {roll(table_alignment)} and {roll(table_lawfulness)}.".capitalize())
+
+    alignment = roll(table_alignment)
+    lawfulness = roll(table_lawfulness)
+
+    description.append(f"{pronoun} {alignment[0]} and {lawfulness[0]}.".capitalize())
+
+    ideals = []
+    if alignment[1] == Alignment.Good:
+        ideals.append((table_good_ideal, 10))
+    else:
+        ideals.append((table_good_ideal, 1))
+    if alignment[1] == Alignment.Evil:
+        ideals.append((table_evil_ideal, 10))
+    else:
+        ideals.append((table_evil_ideal, 1))
+    if lawfulness[1] == Lawfulness.Lawful:
+        ideals.append((table_lawful_ideal, 10))
+    else:
+        ideals.append((table_lawful_ideal, 1))
+    if lawfulness[1] == Lawfulness.Neutral:
+        ideals.append((table_neutral_ideal, 10))
+    else:
+        ideals.append((table_neutral_ideal, 1))
+    if lawfulness[1] == Lawfulness.Chaotic:
+        ideals.append((table_chaotic_ideal, 10))
+    else:
+        ideals.append((table_chaotic_ideal, 1))
+    ideals.append((table_other_ideal, 5))
+    table_ideal = roll(ideals)
+    ideal1, ideal2 = roll_exclusive(table_ideal, table_ideal)
+
+    description.append(f"{pronoun} values {ideal1} and {ideal2} above all else.".capitalize())
 
     print(" ".join(description))
 
