@@ -33,7 +33,10 @@ def roll(table):
     :return: [description]
     :rtype: [type]
     """
-    t = expand(table)
+    if table[0].__class__ == tuple:
+        t = expand(table)
+    else:
+        t = table
     choice = t[randint(0, len(t) - 1)]
     if choice[1] is None:
         return choice[0]

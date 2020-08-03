@@ -1,5 +1,6 @@
 from roll import expand, roll, roll_exclusive
 from enum import Enum
+from random import randint
 
 
 class Alignment(Enum):
@@ -41,6 +42,11 @@ table_animal = [
     ("spiders", 1),
     ("scorpions", 1),
     ("bats", 1),
+    ("horses", 1),
+    ("llamas", 1),
+    ("badgers", 1),
+    ("dinosaurs", 1),
+    ("wolves", 1),
 ]
 
 table_age_qualifier = [
@@ -57,16 +63,22 @@ table_age = [
 
 table_weight = [
     (" and slim", 3),
+    (" and thin", 3),
     ("", 4),
     (" and round", 2),
     (" and fat", 1),
+    (" and overweight", 2),
+    (" and obese", 1),
 ]
 
 table_height = [
     ("a tiny", 1),
     ("a small", 3),
-    ("a", 4),
-    ("a tall", 2),
+    ("a", 10),
+    ("a tall", 3),
+    ("a huge", 2),
+    ("an enormous", 1),
+    ("a gigantic", 1),
 ]
 
 table_side = [
@@ -99,26 +111,64 @@ table_body_part = [
 ]
 
 table_body_piercing_location = [
-    ("nostril", 1),
-    ("eyebrow", 1),
-    ("", 1),
-    ("", 1),
-    ("", 1),
-    ("", 1),
-    ("", 1),
-    ("", 1),
+    (f"{roll(table_side)} nostril", 1),
+    ("nostrils", 1),
+    (f"{roll(table_side)} eyebrow", 1),
+    ("eyebrows", 1),
+    (f"{roll(table_upper_lower)} lip", 1),
+    ("lips", 1),
+    ("tongue", 1),
+    (f"{roll(table_side)} ear", 1),
+    ("ears", 1),
+    (f"{roll(table_side)} nipple", 1),
+    ("nipples", 1),
+    ("belly button", 1),
+    ("private parts", 1),
+]
+
+table_body_appendage = [
+    (f"1 finger on the {roll(table_side)} hand", 1),
+    (f"{randint(2, 5)} fingers on the {roll(table_side)} hand", 1),
+    (f"1 toe on the {roll(table_side)} foot", 1),
+    (f"{randint(2, 5)} toes on the {roll(table_side)} foot", 1),
+    (f"the {roll(table_side)} ear", 1),
+    (f"a tooth", 1),
+    (f"the tip of the nose", 1),
+]
+
+table_eye_color = [
+    ("brown", 1),
+    ("grey", 1),
+    ("blue", 1),
+    ("green", 1),
+    ("amber", 1),
+    ("nut", 1),
+    ("red", 1),
+    ("yellow", 1),
+    ("turquoise", 1),
+    ("jade", 1),
+]
+
+table_multiple_eye_colors = [
+    (1, 9),
+    (2, 1),
+]
+
+table_eye_color_qualifier = [
+    ("deep", 1),
+    ("soft", 1),
+    ("vivid", 1),
+    ("diffuse", 1),
 ]
 
 table_appearance = [
     ("wears distinctive jewelry", 1),
-    (f"wears piercings on the {roll(table_body_part)}", 1),
+    (f"wears piercings on the {roll(table_body_piercing_location)}", 1),
     ("wears flamboyant or outlandish clothes", 1),
     ("wears formal, clean clothes", 1),
     ("wears ragged, dirty clothes", 1),
     (f"bears a pronounced scar on the {roll(table_body_part)}", 1),
-    ("has a missing teeth", 1),
-    ("has missing fingers", 1),
-    ("has an unusual eye color (or 2 different colors)", 1),
+    (f"is missing {roll(table_body_appendage)}", 1),
     (f"has visible tattoos on the {roll(table_body_part)}", 1),
     (f"has a visible birthmark on the {roll(table_body_part)}", 1),
     (f"has a bruised {roll(table_body_part)}", 1),
@@ -134,21 +184,21 @@ table_appearance = [
 ]
 
 table_high_ability = [
-    ("is powerful, brawny and strong as an ox", 1),
-    ("is lithe, agile and graceful", 1),
-    ("is hardy, hale and healthy", 1),
-    ("is studious, learned and inquisitive", 1),
-    ("is perceptive, spiritual and insightful", 1),
-    ("is persuasive, forceful and a born leader", 1),
+    (roll(["is powerful", "is brawny", "is strong as an ox"]), 1),
+    (roll(["is lithe", "is agile", "is graceful"]), 1),
+    (roll(["is hardy", "is hale" "is healthy"]), 1),
+    (roll(["is studious", "is learned", "is inquisitive"]), 1),
+    (roll(["is perceptive", "is spiritual", "is insightful"]), 1),
+    (roll(["is persuasive", "is forceful", "is a born leader"]), 1),
 ]
 
 table_low_ability = [
-    ("feeble and scrawny", 1),
-    ("clumsy and fumbling", 1),
-    ("sickly and pale", 1),
-    ("dim-witted and slow", 1),
-    ("oblivious and absentminded", 1),
-    ("dull and boring", 1),
+    (roll(["feeble", "scrawny"]), 1),
+    (roll(["clumsy", "fumbling"]), 1),
+    (roll(["sickly", "pale"]), 1),
+    (roll(["dim-witted", "slow"]), 1),
+    (roll(["oblivious", "absentminded"]), 1),
+    (roll(["dull", "boring"]), 1),
 ]
 
 table_craft = [
@@ -369,7 +419,14 @@ def npc():
         pronoun_poss = "her"
 
     description.append(f"{pronoun} is {roll(table_height)}{roll(table_weight)} {roll(table_age_qualifier)} {sex} {roll(table_race)} {roll(table_age)}.".capitalize())
-    description.append(f"{pronoun} {roll(table_appearance)}.".capitalize())
+    description.append(f"{pronoun} {roll(table_appearance)}".capitalize())
+
+    n_eye_colors = roll(table_multiple_eye_colors)
+    if n_eye_colors == 1:
+        description.append(f"and {pronoun_poss} eyes are a {roll(table_eye_color_qualifier)} {roll(table_eye_color)}.")
+    else:
+        eye_left, eye_right = roll_exclusive(table_eye_color, table_eye_color)
+        description.append(f"and {pronoun_poss} left eye is a {roll(table_eye_color_qualifier)} {eye_left} and {pronoun_poss} rigth eye a {roll(table_eye_color_qualifier)} {eye_right}.")
 
     a = roll_exclusive(table_high_ability, table_low_ability)
 
