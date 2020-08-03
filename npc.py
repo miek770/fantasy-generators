@@ -252,8 +252,10 @@ def npc():
     sex = roll(table_sex)
     if sex == "male":
         pronoun = "he"
+        pronoun_poss = "his"
     else:
         pronoun = "she"
+        pronoun_poss = "her"
 
     description.append(f"{pronoun} is {roll(table_age_qualifier)} {sex} {roll(table_race)} {roll(table_age)}.".capitalize())
     description.append(f"{pronoun} {roll(table_appearance)}.".capitalize())
@@ -302,6 +304,11 @@ def npc():
     else:
         bond1, bond2 = roll_exclusive(table_bond, table_bond)
         description.append(f"{pronoun} is {bond1} and {bond2}.".capitalize())
+
+    description.append(f"{pronoun_poss} biggest flaw is ...;".capitalize())
+    description.append(f"{pronoun_poss} deepest secret is ...")
+
+    #description.append(f"".capitalize())
 
     print(" ".join(description))
 
