@@ -1,4 +1,4 @@
-from random import randint
+from random import choice
 
 def expand(table):
     """Flatten and expand the table.
@@ -37,11 +37,11 @@ def roll(table):
         t = expand(table)
     else:
         t = table
-    choice = t[randint(0, len(t) - 1)]
-    if choice[1] is None:
-        return choice[0]
+    rolled = choice(t)
+    if rolled[1] is None:
+        return rolled[0]
     else:
-        return choice
+        return rolled
 
 
 def roll_exclusive(table1, table2):
