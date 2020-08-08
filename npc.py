@@ -1,4 +1,6 @@
 from roll import expand, roll, roll_exclusive
+from names.names import get as get_name
+
 from enum import Enum
 from random import randint
 
@@ -414,11 +416,15 @@ def npc():
     if sex == "male":
         pronoun = "he"
         pronoun_poss = "his"
+        firstname = get_name("male").capitalize()
     else:
         pronoun = "she"
         pronoun_poss = "her"
+        firstname = get_name("female").capitalize()
 
-    description.append(f"{pronoun} is {roll(table_height)}{roll(table_weight)} {roll(table_age_qualifier)} {sex} {roll(table_race)} {roll(table_age)}.".capitalize())
+    lastname = get_name("surname").capitalize()
+
+    description.append(f"{firstname} {lastname} is {roll(table_height)}{roll(table_weight)} {roll(table_age_qualifier)} {sex} {roll(table_race)} {roll(table_age)}.")
     description.append(f"{pronoun} {roll(table_appearance)}".capitalize())
 
     n_eye_colors = roll(table_multiple_eye_colors)

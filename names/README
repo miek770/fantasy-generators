@@ -1,0 +1,3 @@
+This repo is a fork from https://github.com/jmathes/names
+
+I simply converted `names.py` to Python 3. Everything else comes from Joe.
