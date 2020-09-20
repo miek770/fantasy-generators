@@ -52,9 +52,9 @@ table_animal = [
 ]
 
 table_age_qualifier = [
-    ("a young", 1),
-    ("a", 2),
-    ("an old", 1),
+    ("young ", 1),
+    ("", 2),
+    ("old ", 1),
 ]
 
 table_age = [
@@ -64,23 +64,22 @@ table_age = [
 ]
 
 table_weight = [
-    (" and slim", 3),
-    (" and thin", 3),
-    ("", 4),
-    (" and round", 2),
-    (" and fat", 1),
-    (" and overweight", 2),
-    (" and obese", 1),
+    ("slim", 3),
+    ("thin", 3),
+    ("lean", 4),
+    ("round", 2),
+    ("fat", 1),
+    ("overweight", 2),
+    ("obese", 1),
 ]
 
 table_height = [
-    ("a tiny", 1),
-    ("a small", 3),
-    ("a", 10),
-    ("a tall", 3),
-    ("a huge", 2),
-    ("an enormous", 1),
-    ("a gigantic", 1),
+    ("tiny", 1),
+    ("small", 3),
+    ("typical", 10),
+    ("tall", 3),
+    ("huge", 2),
+    ("gigantic", 1),
 ]
 
 table_side = [
@@ -429,7 +428,7 @@ def npc():
     lastname = get_name("surname").capitalize()
 
     description.append(
-        f"{firstname} {lastname} is {roll(table_height)}{roll(table_weight)} {roll(table_age_qualifier)} {sex} {roll(table_race)} {roll(table_age)}."
+        f"{firstname} {lastname} is a {roll(table_height)} and {roll(table_weight)} {roll(table_age_qualifier)}{sex} {roll(table_race)} {roll(table_age)}."
     )
     description.append(f"{pronoun} {roll(table_appearance)}".capitalize())
 
