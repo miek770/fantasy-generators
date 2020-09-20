@@ -311,7 +311,11 @@ table_alignment = [
 
 table_lawfulness = [
     ("believes in law and order", 3, Lawfulness.Lawful),
-    ("believes laws are sometimes wrong and civilization has a price", 2, Lawfulness.Neutral),
+    (
+        "believes laws are sometimes wrong and civilization has a price",
+        2,
+        Lawfulness.Neutral,
+    ),
     ("believes rules are for others", 1, Lawfulness.Chaotic),
 ]
 
@@ -424,21 +428,31 @@ def npc():
 
     lastname = get_name("surname").capitalize()
 
-    description.append(f"{firstname} {lastname} is {roll(table_height)}{roll(table_weight)} {roll(table_age_qualifier)} {sex} {roll(table_race)} {roll(table_age)}.")
+    description.append(
+        f"{firstname} {lastname} is {roll(table_height)}{roll(table_weight)} {roll(table_age_qualifier)} {sex} {roll(table_race)} {roll(table_age)}."
+    )
     description.append(f"{pronoun} {roll(table_appearance)}".capitalize())
 
     n_eye_colors = roll(table_multiple_eye_colors)
     if n_eye_colors == 1:
-        description.append(f"and {pronoun_poss} eyes are a {roll(table_eye_color_qualifier)} {roll(table_eye_color)}.")
+        description.append(
+            f"and {pronoun_poss} eyes are a {roll(table_eye_color_qualifier)} {roll(table_eye_color)}."
+        )
     else:
         eye_left, eye_right = roll_exclusive(table_eye_color, table_eye_color)
-        description.append(f"and {pronoun_poss} left eye is a {roll(table_eye_color_qualifier)} {eye_left} and {pronoun_poss} rigth eye a {roll(table_eye_color_qualifier)} {eye_right}.")
+        description.append(
+            f"and {pronoun_poss} left eye is a {roll(table_eye_color_qualifier)} {eye_left} and {pronoun_poss} rigth eye a {roll(table_eye_color_qualifier)} {eye_right}."
+        )
 
     a = roll_exclusive(table_high_ability, table_low_ability)
 
     description.append(f"{pronoun} {a[0]} but {a[1]}.".capitalize())
-    description.append(f"{pronoun} {roll(table_talent)} and {roll(table_mannerism)}.".capitalize())
-    description.append(f"{pronoun} is {roll(table_frequency)} {roll(table_interactions)}.".capitalize())
+    description.append(
+        f"{pronoun} {roll(table_talent)} and {roll(table_mannerism)}.".capitalize()
+    )
+    description.append(
+        f"{pronoun} is {roll(table_frequency)} {roll(table_interactions)}.".capitalize()
+    )
 
     alignment = roll(table_alignment)
     lawfulness = roll(table_lawfulness)
@@ -470,7 +484,9 @@ def npc():
     table_ideal = roll(ideals)
     ideal1, ideal2 = roll_exclusive(table_ideal, table_ideal)
 
-    description.append(f"{pronoun} values {ideal1} and {ideal2} above all else.".capitalize())
+    description.append(
+        f"{pronoun} values {ideal1} and {ideal2} above all else.".capitalize()
+    )
 
     n_bonds = roll(table_multiple_bonds)
     if n_bonds == 1:
@@ -479,10 +495,12 @@ def npc():
         bond1, bond2 = roll_exclusive(table_bond, table_bond)
         description.append(f"{pronoun} is {bond1} and {bond2}.".capitalize())
 
-    description.append(f"{pronoun_poss} biggest flaw is {roll(table_flaw)};".capitalize())
+    description.append(
+        f"{pronoun_poss} biggest flaw is {roll(table_flaw)};".capitalize()
+    )
     description.append(f"{pronoun_poss} deepest secret is {roll(table_secret)}.")
 
-    #description.append(f"".capitalize())
+    # description.append(f"".capitalize())
 
     print(" ".join(description))
 
