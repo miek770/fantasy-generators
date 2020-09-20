@@ -1,8 +1,10 @@
-from roll import expand, roll, roll_exclusive
-from names.names import get as get_name
-
+# Standard library
 from enum import Enum
 from random import randint
+
+# Current module
+from roll import expand, roll, roll_exclusive
+from names.names import get as get_name
 
 
 class Alignment(Enum):
@@ -202,16 +204,108 @@ table_low_ability = [
     (roll(["dull", "boring"]), 1),
 ]
 
-table_craft = [
-    ("cook", 1),
-    ("mason", 1),
-    ("carpenter", 1),
-    ("jeweler", 1),
-    ("smith", 1),
-    ("tinkerer", 1),
-    ("alchemist", 1),
-    ("scribe", 1),
-    ("hunter", 1),
+# Source: http://dndspeak.com/2019/01/100-npc-jobs/
+table_job = [
+    ("Tinkerer", 1),
+    ("Owlbear Breeder", 1),
+    ("Shaman", 1),
+    ("Bottle Maker", 1),
+    ("Stable hand", 1),
+    ("Innkeeper", 1),
+    ("Blacksmith", 1),
+    ("Washerwoman", 1),
+    ("Town cryer", 1),
+    ("Tailor", 1),
+    ("Portrait painter", 1),
+    ("Cobbler", 1),
+    ("Lamplighter", 1),
+    ("Trapper", 1),
+    ("Fletcher", 1),
+    ("Tanner", 1),
+    ("Herbalist", 1),
+    ("Farmer", 1),
+    ("Carpenter", 1),
+    ("Stonemason", 1),
+    ("Miner", 1),
+    ("Fortune teller", 1),
+    ("Baker", 1),
+    ("Town guard", 1),
+    ("Rat catcher", 1),
+    ("Doctor", 1),
+    ("Messenger", 1),
+    ("Lawyer", 1),
+    ("Banker", 1),
+    ("Animal tamer", 1),
+    ("Guide", 1),
+    ("Cartographer", 1),
+    ("Sheriff", 1),
+    ("Dairy maid", 1),
+    ("Bookkeeper", 1),
+    ("Academic", 1),
+    ("Accountant", 1),
+    ("Actor", 1),
+    ("Apprentice", 1),
+    ("Artisan", 1),
+    ("Assassin", 1),
+    ("Bandit", 1),
+    ("Barde", 1),
+    ("Beggar", 1),
+    ("Bounty hunter", 1),
+    ("Brewer", 1),
+    ("Con artist", 1),
+    ("Cook", 1),
+    ("Druid", 1),
+    ("Fisher", 1),
+    ("Gambler", 1),
+    ("Gravedigger", 1),
+    ("Hunter", 1),
+    ("Jester", 1),
+    ("Knight", 1),
+    ("Laborer", 1),
+    ("Lawman", 1),
+    ("Lumberjack", 1),
+    ("Mercenary", 1),
+    ("Noble", 1),
+    ("Priest", 1),
+    ("Ranger", 1),
+    ("Sailor", 1),
+    ("Scribe", 1),
+    ("Servant", 1),
+    ("Shepperd", 1),
+    ("Slave", 1),
+    ("Soldier", 1),
+    ("Thief", 1),
+    ("Thug", 1),
+    ("Trader", 1),
+    ("Treasure Hunter", 1),
+    ("Wanderer", 1),
+    ("Wizard", 1),
+    ("Wrestler", 1),
+    ("Lighthouse Keeper", 1),
+    ("Landlord", 1),
+    ("Author", 1),
+    ("Lookout", 1),
+    ("Clocksmith", 1),
+    ("Exorcist", 1),
+    ("Soapmaker", 1),
+    ("Beekeeper", 1),
+    ("Botanist", 1),
+    ("Alchemist", 1),
+    ("Potioneer", 1),
+    ("Librarian", 1),
+    ("Bartender", 1),
+    ("Toymaker", 1),
+    ("Woodcarver", 1),
+    ("Squire", 1),
+    ("Roofer", 1),
+    ("Sculptor", 1),
+    ("Scholar", 1),
+    ("Nurse", 1),
+    ("Nun", 1),
+    ("Mortician", 1),
+    ("Historian", 1),
+    ("Gladiator", 1),
+    ("Barber", 1),
 ]
 
 table_proficiency = [
@@ -245,7 +339,7 @@ table_talent = [
     ("paints beautifully", 1),
     ("sings beautifully", 1),
     ("drinks everyone under the table", 1),
-    (f"is an {roll(table_proficiency)} {roll(table_craft)}", 1),
+    (f"is an {roll(table_proficiency)} {roll(table_job)}", 1),
     (f"is an {roll(table_proficiency)} dart thrower and rock skipper", 1),
     (f"is an {roll(table_proficiency)} juggler", 1),
     (f"is a {roll(table_proficiency)} actor and master of disguise", 1),
@@ -502,7 +596,3 @@ def npc():
     # description.append(f"".capitalize())
 
     print(" ".join(description))
-
-
-if __name__ == "__main__":
-    npc()
