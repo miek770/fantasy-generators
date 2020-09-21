@@ -3,7 +3,7 @@ from enum import Enum
 from random import randint
 
 # Current module
-from roll import expand, roll, roll_exclusive
+from roll import roll, roll_exclusive
 from names.names import get as get_name
 
 
@@ -595,4 +595,9 @@ def npc():
 
     # description.append(f"".capitalize())
 
-    print(" ".join(description))
+    return " ".join(description)
+
+
+def main(repeat=0):
+    for i in range(repeat - 1):
+        print(f"{i + 1}. {npc()}\n")

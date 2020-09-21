@@ -2,7 +2,7 @@ from roll import roll
 
 
 # Source: https://www.reddit.com/r/d100/comments/is3iy3/lets_build_d100_goblin_units_and_their_lore/
-table_gobling_unit = [
+table = [
     (
         """Civilians: All goblins were born to live and die for the mighty. Civilians may be insignificant but they make for a valuable meat shield.""",
         1,
@@ -390,8 +390,9 @@ table_gobling_unit = [
 ]
 
 
-def main():
-    print(roll(table_gobling_unit))
+def main(repeat=0):
+    for i in range(repeat - 1):
+        print(f"{i + 1}. {roll(table)}\n")
 
 
 if __name__ == "__main__":
