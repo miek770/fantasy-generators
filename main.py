@@ -9,6 +9,13 @@ from magic_services import main as roll_magic_services
 # Current module: Encounters
 from city_street_encounter import main as roll_city_street_encounter
 from scary_forest_encounter import main as roll_scary_forest_encounter
+from beach_encounter import main as roll_beach_encounter
+from travel_complication import main as roll_travel_complication
+from road_social_encounter import main as roll_road_social_encounter
+from tavern_encounter import main as roll_tavern_encounter
+from forest_encounter import main as roll_forest_encounter
+from sea_travel_events import main as roll_sea_travel_event
+from desert_encounter import main as roll_desert_encounter
 
 
 __title__ = "Fantasy Generators"
@@ -50,13 +57,22 @@ def main():
     parser.add_argument(
         "category",
         default="NPC",
-        choices=[
-            "NPC",
-            "Goblin unit",
-            "Magic services",
-            "City street encounter",
-            "Scary forest encounter",
-        ],
+        choices=sorted(
+            [
+                "NPC",
+                "Goblin unit",
+                "Magic services",
+                "City street encounter",
+                "Scary forest encounter",
+                "Beach encounter",
+                "Travel complication",
+                "Road social encounter",
+                "Tavern encounter",
+                "Forest encounter",
+                "Sea travel event",
+                "Desert encounter",
+            ]
+        ),
     )
     args = parser.parse_args()
 
@@ -74,6 +90,27 @@ def main():
 
     elif args.category == "Scary forest encounter":
         roll_scary_forest_encounter(args.count)
+
+    elif args.category == "Beach encounter":
+        roll_beach_encounter(args.count)
+
+    elif args.category == "Travel complication":
+        roll_travel_complication(args.count)
+
+    elif args.category == "Road social encounter":
+        roll_road_social_encounter(args.count)
+
+    elif args.category == "Tavern encounter":
+        roll_tavern_encounter(args.count)
+
+    elif args.category == "Forest encounter":
+        roll_forest_encounter(args.count)
+
+    elif args.category == "Sea travel event":
+        roll_sea_travel_event(args.count)
+
+    elif args.category == "Desert encounter":
+        roll_desert_encounter(args.count)
 
 
 if __name__ == "__main__":

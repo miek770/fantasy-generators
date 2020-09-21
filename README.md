@@ -8,6 +8,7 @@ Random content generators for fantasy roleplay games.
 - [Content](#content)
 - [NPC](#npc)
 - [Sources](#sources)
+  - [Parsing those lists](#parsing-those-lists)
 
 # NPC
 
@@ -24,3 +25,9 @@ The names are generated using [jmathes' *names* repo](https://github.com/jmathes
 # Sources
 
 - [Reddit/d100](https://www.reddit.com/r/d100/wiki/finished)
+
+## Parsing those lists
+
+In MS Excel:
+
+    CONCAT("    ('";SUBSTITUTE(B1;LEFT(B1;FIND(". ";B1)+1);"");"', 1),")
