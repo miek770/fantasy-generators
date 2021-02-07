@@ -30,4 +30,4 @@ The names are generated using [jmathes' *names* repo](https://github.com/jmathes
 
 In MS Excel:
 
-    CONCAT("    ('";SUBSTITUTE(B1;LEFT(B1;FIND(". ";B1)+1);"");"', 1),")
+    CONCAT("    ('";SUBSTITUTE(A1;LEFT(A1;FIND(". ";A1)+1);"");"', 1),")

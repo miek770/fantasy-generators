@@ -29,7 +29,7 @@ from landmark import main as roll_landmark
 
 __title__ = "Fantasy Generators"
 __description__ = "Collection of generators for DND5e or similar fantasy RPG games"
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 
 @Gooey(
