@@ -10,7 +10,7 @@ rm -rf "$TITLE-$VERSION"
 rm -rf "$TITLE-$VERSION.zip"
 
 # Compile using Nuitka
-python -m nuitka --standalone --plugin-enable=numpy --mingw64 --assume-yes-for-downloads --remove-output main.py
+python -m nuitka --standalone --plugin-enable=numpy --mingw64 --assume-yes-for-downloads --remove-output --windows-disable-console main.py
 
 # Rename and compress release
 sleep 5

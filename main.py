@@ -1,5 +1,5 @@
 __title__ = "Fantasy Generators"
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 __description__ = "Collection of generators for DND5e or similar fantasy RPG games"
 __copyright__ = "2021"
 __website__ = "https://github.com/miek770/fantasy-generators"
