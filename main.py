@@ -1,4 +1,16 @@
+__title__ = "Fantasy Generators"
+__version__ = "0.2.0"
+__description__ = "Collection of generators for DND5e or similar fantasy RPG games"
+__copyright__ = "2021"
+__website__ = "https://github.com/miek770/fantasy-generators"
+__author__ = "Michel Lavoie"
+__license__ = "MIT"
+
+
 # Standard library
+from sys import argv
+
+# Extra libraries
 from gooey import Gooey, GooeyParser
 
 # Current module: General
@@ -27,9 +39,10 @@ from god import main as roll_god
 from landmark import main as roll_landmark
 
 
-__title__ = "Fantasy Generators"
-__description__ = "Collection of generators for DND5e or similar fantasy RPG games"
-__version__ = "0.2.0"
+# From https://github.com/chriskiehl/Gooey/issues/610#issuecomment-714562447
+target = None
+if "__compiled__" in globals():
+    target = argv[0]
 
 
 @Gooey(
@@ -45,14 +58,15 @@ __version__ = "0.2.0"
                     "name": __title__,
                     "description": __description__,
                     "version": __version__,
-                    "copyright": "2020",
-                    "website": "https://github.com/miek770/fantasy-generators",
-                    "developer": "Michel Lavoie",
-                    "license": "MIT",
+                    "copyright": __copyright__,
+                    "website": __website__,
+                    "developer": __author__,
+                    "license": __license__,
                 },
             ],
         },
     ],
+    target=target,
 )
 def main():
     parser = GooeyParser()
