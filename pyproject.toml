@@ -1,0 +1,15 @@
+[project]
+name = "fantasy-generators"
+version = "0.3.0"
+description = "Random content generators for fantasy roleplay games"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "gooey>=1.0.8.1",
+    "six>=1.17.0",
+]
+
+[dependency-groups]
+dev = [
+    "nuitka>=2.8.4",
+]
